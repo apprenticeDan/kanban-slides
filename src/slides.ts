@@ -312,6 +312,20 @@ export const slides: Slide[] = [
   },
   {
     id: 11,
+    type: "text",
+    title: "Desventajas y Riesgos",
+    content: {
+      subtitle: "Lo que puede salir mal al implementar Kanban",
+      bullets: [
+        "⚠️ <b>El Tablero Fantasma:</b> Crear el tablero visual pero ignorar los límites WIP. Se convierte en una simple lista de tareas sin beneficios reales (Proto-Kanban).",
+        "⚠️ <b>Falta de Sprints:</b> La ausencia de hitos obligatorios (como el fin de un Sprint) puede causar pérdida de ritmo o urgencia en equipos inmaduros.",
+        "⚠️ <b>Requiere alta disciplina:</b> Sin un Scrum Master que vigile los eventos, recae sobre la madurez del equipo analizar las métricas y destrabar el flujo constante.",
+      ],
+      highlight: "Kanban refleja tus problemas actuales; no los resuelve mágicamente por sí solo."
+    },
+  },
+  {
+    id: 12,
     type: "vsscrum",
     title: "Kanban vs Scrum",
     content: {
@@ -326,7 +340,7 @@ export const slides: Slide[] = [
     },
   },
   {
-    id: 12,
+    id: 13,
     type: "closing",
     title: "¿Por dónde empezar?",
     content: {
@@ -339,6 +353,16 @@ export const slides: Slide[] = [
       ],
       highlight: "Evolución, no revolución",
       note: "El verdadero Kanban requiere paciencia y voluntad de descubrir los cuellos de botella estructurales de tu organización.",
+    },
+  },
+  {
+    id: 14,
+    type: "cover",
+    title: "¡Gracias!",
+    content: {
+      subtitle: "¿Preguntas? 🙋‍♂️🙋‍♀️",
+      body: "Para aprender más, te recomiendo el libro 'Kanban' de David J. Anderson.",
+      highlight: "終",
     },
   },
 ];
