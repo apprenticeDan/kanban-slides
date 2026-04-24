@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban — Presentación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Progress bar -->
+      <div id="progress-track">
+        <div id="progress-bar"></div>
+      </div>
+
+      <!-- Slide area -->
+      <main id="slide-container"></main>
+
+      <!-- Controls -->
+      <nav id="controls">
+        <button id="prev-btn" class="nav-btn" aria-label="Anterior">←</button>
+        <div id="nav-dots"></div>
+        <span id="slide-counter">1 / 10</span>
+        <button id="next-btn" class="nav-btn" aria-label="Siguiente">→</button>
+      </nav>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
