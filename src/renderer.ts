@@ -83,11 +83,11 @@ function renderHistory(slide: Slide): string {
 
 function renderPrinciples(slide: Slide): string {
   const { subtitle, bullets, note } = slide.content;
-  const colors = ["#FFF176", "#FFCCBC", "#C8E6C9", "#BBDEFB"];
+  const colors = ["#F1F5F9", "#F8FAFC", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#E2E8F0"];
   const bulletsHTML = (bullets || [])
     .map(
       (b, i) => `
-    <div class="principle-card" style="background:${colors[i]};animation-delay:${i * 0.12}s">
+    <div class="principle-card" style="background:${colors[i % colors.length]};animation-delay:${i * 0.12}s; border: 1px solid rgba(0,0,0,0.05); box-shadow: 1px 1px 0 rgba(0,0,0,0.03);">
       <p>${b}</p>
     </div>`
     )
@@ -115,13 +115,19 @@ function renderBoard(slide: Slide): string {
       </div>
       <div class="col-cards">
         ${col.cards
-          .map(
-            (card, ki) => `
+          .map((card, ki) => {
+            const avatarsHTML = card.avatars 
+              ? `<div class="card-avatars">${card.avatars.map(av => `<span class="avatar">${av}</span>`).join('')}</div>`
+              : '';
+            return `
           <div class="kanban-card" style="transform:rotate(${card.rotate}deg);animation-delay:${(ci * 3 + ki) * 0.07}s">
             <p class="card-text">${card.text}</p>
-            <span class="card-tag" style="background:${card.tagColor}">${card.tag}</span>
-          </div>`
-          )
+            <div class="card-footer">
+              <span class="card-tag" style="background:${card.tagColor}">${card.tag}</span>
+              ${avatarsHTML}
+            </div>
+          </div>`;
+          })
           .join("")}
       </div>
     </div>`
@@ -138,12 +144,12 @@ function renderBoard(slide: Slide): string {
 }
 
 function renderText(slide: Slide): string {
-  const { subtitle, body, bullets, highlight, note } = slide.content;
-  const colors = ["#FFCDD2", "#FFF9C4", "#C8E6C9", "#BBDEFB", "#FFE0B2", "#E1BEE7"];
+  const { subtitle, body, bullets, note } = slide.content;
+  const colors = ["#F1F5F9", "#F8FAFC", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#E2E8F0"];
   const bulletsHTML = (bullets || [])
     .map(
       (b, i) => `
-    <div class="wip-row" style="background:${colors[i % colors.length]};animation-delay:${i * 0.15}s">
+    <div class="wip-row" style="background:${colors[i % colors.length]};animation-delay:${i * 0.15}s; border: 1px solid rgba(0,0,0,0.05); box-shadow: 1px 1px 0 rgba(0,0,0,0.03);">
       <p>${b}</p>
     </div>`
     )
@@ -156,7 +162,6 @@ function renderText(slide: Slide): string {
       </div>
       ${body ? `<p class="slide-body">${body}</p>` : ''}
       <div class="wip-rows">${bulletsHTML}</div>
-      ${highlight ? `<div class="highlight-box">${highlight}</div>` : ''}
       ${note ? `<div class="slide-note">${note}</div>` : ''}
     </div>`;
 }
@@ -242,11 +247,11 @@ function renderTools(slide: Slide): string {
 
 function renderClosing(slide: Slide): string {
   const { subtitle, bullets, highlight, note } = slide.content;
-  const colors = ["#FFF176", "#FFCCBC", "#C8E6C9", "#BBDEFB"];
+  const colors = ["#F1F5F9", "#F8FAFC", "#E2E8F0", "#F1F5F9"];
   const bulletsHTML = (bullets || [])
     .map(
       (b, i) => `
-    <div class="step-card" style="background:${colors[i]};animation-delay:${i * 0.15}s">
+    <div class="step-card" style="background:${colors[i % colors.length]};animation-delay:${i * 0.15}s; border: 1px solid rgba(0,0,0,0.05); box-shadow: 1px 1px 0 rgba(0,0,0,0.03);">
       <p>${b}</p>
     </div>`
     )
@@ -259,7 +264,6 @@ function renderClosing(slide: Slide): string {
       </div>
       <div class="steps-grid">${bulletsHTML}</div>
       <div class="closing-footer">
-        <div class="closing-kanji">${highlight}</div>
         <div class="closing-note">${note}</div>
       </div>
     </div>`;

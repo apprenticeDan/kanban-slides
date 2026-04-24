@@ -3,15 +3,15 @@
    ============================================================ */
 
 :root {
-  --yellow: #FDD835;
-  --orange: #FF7043;
-  --blue: #29B6F6;
-  --green: #66BB6A;
-  --purple: #AB47BC;
-  --pink: #EC407A;
-  --bg: #F5F0E8;
-  --cork: #C8A97E;
-  --shadow: rgba(0,0,0,0.18);
+  --yellow: #F5A623;
+  --orange: #F56A00;
+  --blue: #0070F3;
+  --green: #10B981;
+  --purple: #7928CA;
+  --pink: #FF0080;
+  --bg: #FAFAFA;
+  --cork: #E5E7EB;
+  --shadow: rgba(0,0,0,0.06);
   --font-hand: 'Caveat', cursive;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -31,10 +31,7 @@ html, body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background:
-    radial-gradient(ellipse at 20% 80%, rgba(253,216,53,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(41,182,246,0.12) 0%, transparent 50%),
-    #F5F0E8;
+  background: var(--bg);
 }
 
 /* ---- Progress ---- */
@@ -178,13 +175,14 @@ html, body {
   max-width: 800px;
 }
 .slide-note {
+  display: none; /* Oculto a petición del usuario */
   font-size: 0.8rem;
   color: #777;
   font-style: italic;
   margin-top: auto;
   padding: 0.5rem 0.8rem;
-  border-left: 3px solid var(--yellow);
-  background: rgba(253,216,53,0.1);
+  border-left: 3px solid var(--blue);
+  background: rgba(0, 112, 243, 0.05);
   border-radius: 0 6px 6px 0;
 }
 
@@ -398,15 +396,38 @@ html, body {
   color: #333;
   line-height: 1.3;
 }
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0.2rem;
+}
 .card-tag {
   font-size: 0.6rem;
   color: white;
   padding: 2px 7px;
   border-radius: 20px;
   font-weight: 700;
-  align-self: flex-start;
   font-family: var(--font-body);
   letter-spacing: 0.03em;
+}
+.card-avatars {
+  display: flex;
+  gap: 3px;
+}
+.avatar {
+  background: var(--blue);
+  color: white;
+  font-size: 0.55rem;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
 
 /* ============================================================

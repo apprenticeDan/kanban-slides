@@ -42,6 +42,7 @@ export interface KanbanCard {
   tag: string;
   tagColor: string;
   rotate: number;
+  avatars?: string[];
 }
 
 export interface Metric {
@@ -97,11 +98,11 @@ export const slides: Slide[] = [
     title: "¿Qué es Kanban?",
     content: {
       subtitle: "¿Es un ciclo de vida? ¿Una metodología?",
-      body: "A diferencia de metodologías pesadas o marcos ágiles prescriptivos (como Scrum), Kanban **no es un ciclo de vida de desarrollo de software ni un proceso con etapas definidas**.",
+      body: "A diferencia de metodologías pesadas o marcos ágiles prescriptivos (como Scrum), Kanban <b>no es un ciclo de vida de desarrollo de software ni un proceso con etapas definidas</b>.",
       bullets: [
         "No te dice cómo desarrollar software (no prescribe fases de diseño, código o QA).",
-        "Es un **método de gestión visual** y de **mejora continua**.",
-        "Se aplica como un «lente» **sobre tu proceso actual** (sea cual sea) para hacerlo visible y optimizarlo.",
+        "Es un <b>método de gestión visual</b> y de <b>mejora continua</b>.",
+        "Se aplica como un «lente» <b>sobre tu proceso actual</b> (sea cual sea) para hacerlo visible y optimizarlo.",
       ],
       highlight: "Start with what you do now.",
       note: "Por eso es tan fácil de adoptar: no requiere reestructurar al equipo desde el día 1.",
@@ -116,25 +117,25 @@ export const slides: Slide[] = [
       postits: [
         {
           text: "El problema clásico (Push): Jefes empujando tareas infinitas a un equipo saturado. Resultado: Estrés y cuellos de botella.",
-          color: "#FFCDD2",
+          color: "#FFE4E6",
           rotate: -2,
           author: "Sistemas Push",
         },
         {
           text: "1953 — Toyota crea tarjetas para señalar demanda. Las partes no se fabrican hasta que la siguiente estación lo pide.",
-          color: "#FFF176",
+          color: "#FEF3C7",
           rotate: 1.5,
           author: "Manufactura",
         },
         {
-          text: "El sistema Pull: El equipo 'jala' (pull) una nueva tarea del Backlog SOLO cuando tiene capacidad (WIP) disponible.",
-          color: "#C8E6C9",
+          text: "El sistema Pull: El equipo «jala» (pull) una nueva tarea del Backlog SOLO cuando tiene capacidad (WIP) disponible.",
+          color: "#DCFCE7",
           rotate: -1,
           author: "Sistemas Pull",
         },
         {
-          text: "2007 — Kanban Method: Adaptación para el 'trabajo del conocimiento' (Software) donde el inventario es invisible (código).",
-          color: "#BBDEFB",
+          text: "2007 — Kanban Method: Adaptación para el «trabajo del conocimiento» (Software) donde el inventario es invisible (código).",
+          color: "#E0E7FF",
           rotate: 2,
           author: "David J. Anderson",
         },
@@ -168,7 +169,7 @@ export const slides: Slide[] = [
         "1️⃣ Visualizar el flujo de trabajo (hacer visible el trabajo invisible).",
         "2️⃣ Limitar el Trabajo en Progreso (WIP) para habilitar el sistema Pull.",
         "3️⃣ Gestionar el flujo (identificar cuellos de botella y bloqueos).",
-        "4️⃣ Hacer las políticas de proceso explícitas (¿qué significa que algo está 'Hecho'?).",
+        "4️⃣ Hacer las políticas de proceso explícitas (¿qué significa que algo está «Hecho»?).",
         "5️⃣ Implementar bucles de feedback (reuniones operativas, revisiones de entrega).",
         "6️⃣ Mejorar colaborativamente, evolucionar experimentalmente (método científico).",
       ],
@@ -177,137 +178,167 @@ export const slides: Slide[] = [
   },
   {
     id: 6,
-    type: "board",
-    title: "El Flujo de Valor Real",
+    type: "text",
+    title: "Upstream vs Downstream",
     content: {
-      subtitle: "Modelando el proceso, incluyendo el Upstream (Discovery) y Downstream (Delivery)",
-      columns: [
-        {
-          name: "💡 Upstream (Ideas)",
-          color: "#E1BEE7",
-          cards: [
-            { text: "Feature de Chat", tag: "Idea", tagColor: "#AB47BC", rotate: -1.5 },
-          ],
-        },
-        {
-          name: "📋 Backlog Refinado",
-          color: "#FFE0B2",
-          wip: undefined,
-          cards: [
-            { text: "API de Pagos", tag: "Backend", tagColor: "#1976D2", rotate: 1 },
-          ],
-        },
-        {
-          name: "⚡ Desarrollo",
-          color: "#FFF9C4",
-          wip: 2,
-          cards: [
-            { text: "Login con Google", tag: "Frontend", tagColor: "#F57C00", rotate: 1.5 },
-          ],
-        },
-        {
-          name: "🔍 Code Review / QA",
-          color: "#E8F5E9",
-          wip: 2,
-          cards: [
-            { text: "Bugs Carrito", tag: "QA", tagColor: "#388E3C", rotate: 0.5 },
-          ],
-        },
-        {
-          name: "✅ Desplegado",
-          color: "#E3F2FD",
-          wip: undefined,
-          cards: [
-            { text: "Optimización DB", tag: "Backend", tagColor: "#1976D2", rotate: -1 },
-          ],
-        },
+      subtitle: "Dos zonas con naturalezas distintas dentro del sistema",
+      body: "En Kanban, <i>upstream</i> y <i>downstream</i> no son solo «antes/después». La frontera entre ambos es el <b>Punto de Compromiso</b> (Commitment Point): el momento en que el equipo acuerda que una idea está lista para construirse.",
+      bullets: [
+        "🧭 <b>Upstream (Exploración):</b> Ideas, análisis, validación de oportunidades. Hay alta incertidumbre y no todo lo que entra aquí se llegará a desarrollar. Se filtra y refina la demanda.",
+        "⚙️ <b>Downstream (Ejecución):</b> Desarrollo, pruebas, despliegue. Flujo más estable y predecible. Aquí entra únicamente el trabajo que ya está listo (Ready) para ejecutarse.",
+        "🎯 <b>¿Por qué importa la distinción?</b> Si tratas el upstream como downstream, fuerzas precisión donde aún hay incertidumbre. Si no filtras el upstream, el downstream se inunda de trabajo mal definido y bloqueos."
       ],
+      highlight: "¿Qué deberíamos hacer? (Upstream) ➡️ ¿Cómo lo hacemos? (Downstream)",
     },
   },
   {
     id: 7,
-    type: "wip",
-    title: "¿Qué significa concretamente limitar el WIP?",
+    type: "text",
+    title: "Dinámica del Tablero (Sistema Pull)",
     content: {
-      subtitle: "Work In Progress (Trabajo en Progreso)",
-      body: "Limitar el WIP significa establecer un **tope máximo estricto** de tarjetas que pueden existir simultáneamente en una columna específica del tablero.",
+      subtitle: "¿Cómo se asigna el trabajo? ¿Qué pasa si alguien está libre?",
+      body: "En Kanban <b>no hay un jefe asignando tareas</b> (eso sería Push). El trabajo fluye mediante reglas claras y auto-organización del equipo.",
       bullets: [
-        "🚧 Tope estricto: Si la columna 'Desarrollo' tiene un WIP de 3, y ya hay 3 tarjetas, los programadores NO pueden empezar una nueva tarea.",
-        "🤝 Colaboración forzada: ¿Qué hacen entonces? Deben ayudar a QA, hacer pair programming, o destrabar dependencias para mover las tarjetas existentes a 'Hecho'.",
-        "🧠 Menos 'Context Switching': Evita que el cerebro del desarrollador salte entre 5 tareas, reduciendo la fatiga mental y los bugs.",
+        "👤 <b>La tarjeta no tiene dueño previo:</b> Una tarjeta en el backlog no tiene un desarrollador asignado. Cuando alguien se libera, <b>«jala»</b> (pull) la tarjeta con mayor prioridad a su columna.",
+        "🤝 <b>Trabajo en equipo:</b> Los avatares en una tarjeta muestran quién la está trabajando <i>en este momento</i>. Si se atasca, más personas pueden sumarse a esa tarjeta (Pair/Mob programming) para destrabarla.",
+        "🛑 <b>¿Qué pasa si no tengo nada que hacer?</b> Primero miras a tu <b>derecha</b> (Downstream). ¿Alguien necesita ayuda en Pruebas o Despliegue? El objetivo es mover las tarjetas hacia «Terminado», NO arrancar cosas nuevas y saturar el WIP."
       ],
-      highlight: "Deja de empezar, comienza a terminar.",
-      note: "El objetivo es maximizar la entrega de valor, no mantener a la gente ocupada el 100% del tiempo.",
-    },
+      note: "Regla de oro: «Ayuda a terminar antes de empezar a trabajar en algo nuevo»."
+    }
   },
   {
     id: 8,
-    type: "metrics",
-    title: "Métricas y la Ley de Little",
+    type: "board",
+    title: "El Flujo de Valor (Tablero Real)",
     content: {
-      subtitle: "Dejamos de estimar en horas y empezamos a medir probabilidad",
-      metrics: [
+      subtitle: "Visualizando Upstream, Downstream, Puntos de Compromiso y Responsables",
+      columns: [
         {
-          name: "Lead Time (Cliente)",
-          value: "Días/Semanas",
-          desc: "Tiempo total desde que el cliente hace la petición hasta que la recibe en producción.",
-          icon: "⏱️",
-          color: "#FF7043",
+          name: "💡 Discovery (Upstream)",
+          color: "#F3E8FF",
+          cards: [
+            { text: "Validar Chat IA", tag: "Research", tagColor: "#9333EA", rotate: -1.5, avatars: ["PM", "UX"] },
+          ],
         },
         {
-          name: "Cycle Time (Equipo)",
-          value: "Días/Horas",
-          desc: "Tiempo que el equipo realmente tarda trabajando en el ítem (desde que entra a 'En Progreso').",
-          icon: "🔄",
-          color: "#29B6F6",
+          name: "📋 Ready (Compromiso)",
+          color: "#FFFBEB",
+          wip: undefined,
+          cards: [
+            { text: "API de Pagos", tag: "Backend", tagColor: "#2563EB", rotate: 1 },
+            { text: "Filtros Catálogo", tag: "Fullstack", tagColor: "#D97706", rotate: 0 },
+          ],
         },
         {
-          name: "Throughput",
-          value: "Items por Sprint/Semana",
-          desc: "Tasa de entrega. Permite predecir (mediante Monte Carlo) cuándo estará listo un proyecto.",
-          icon: "📦",
-          color: "#66BB6A",
+          name: "⚡ Desarrollo (Downstream)",
+          color: "#EFF6FF",
+          wip: 2,
+          cards: [
+            { text: "Login con Google", tag: "Frontend", tagColor: "#059669", rotate: 1.5, avatars: ["JD", "MS"] },
+          ],
         },
         {
-          name: "Ley de Little",
-          value: "Tiempo = WIP / Throughput",
-          desc: "Matemáticamente, si mantienes tu tasa de entrega igual pero reduces tu WIP a la mitad, tu tiempo de entrega se reduce a la mitad.",
-          icon: "🧮",
-          color: "#AB47BC",
+          name: "🔍 QA / Review",
+          color: "#F0FDF4",
+          wip: 2,
+          cards: [
+            { text: "Bugs Carrito", tag: "QA", tagColor: "#E11D48", rotate: 0.5, avatars: ["LV"] },
+          ],
+        },
+        {
+          name: "✅ Desplegado",
+          color: "#F8FAFC",
+          wip: undefined,
+          cards: [
+            { text: "Optimización DB", tag: "Backend", tagColor: "#2563EB", rotate: -1, avatars: ["JD"] },
+          ],
         },
       ],
     },
   },
   {
     id: 9,
-    type: "vsscrum",
-    title: "Kanban vs Scrum",
+    type: "wip",
+    title: "¿Qué significa concretamente limitar el WIP?",
     content: {
-      subtitle: "Ideal para equipos maduros o soporte técnico (Mantenimiento continuo)",
-      comparison: [
-        { aspect: "Iteraciones", kanban: "Flujo continuo (sin Sprints fijos)", scrum: "Sprints fijos (1–4 semanas)" },
-        { aspect: "Roles", kanban: "Se respetan los roles actuales", scrum: "Scrum Master, Product Owner, Devs" },
-        { aspect: "Cambios de prioridad", kanban: "En cualquier momento (mientras haya WIP disponible)", scrum: "No se permiten durante el Sprint activo" },
-        { aspect: "Estimaciones", kanban: "Opcional (se usa métricas históricas de flujo)", scrum: "Obligatorias (Story points)" },
-        { aspect: "Reuniones", kanban: "Según necesidad (reabastecimiento, delivery)", scrum: "Eventos estrictos (Planning, Daily, Retro)" },
-        { aspect: "Aplicación típica", kanban: "Soporte, Mantenimiento, Equipos de Alto Rendimiento, Ops", scrum: "Desarrollo de nuevos productos o features complejas" },
+      subtitle: "Work In Progress (Trabajo en Progreso)",
+      body: "Limitar el WIP significa establecer un <b>tope máximo estricto</b> de tarjetas que pueden existir simultáneamente en una columna específica del tablero.",
+      bullets: [
+        "🚧 Tope estricto: Si la columna «Desarrollo» tiene un WIP de 3, y ya hay 3 tarjetas, los programadores NO pueden jalar una nueva tarea desde «Ready».",
+        "🤝 Colaboración forzada: El límite provoca que el equipo deba colaborar para terminar el trabajo actual antes de aceptar más carga.",
+        "🧠 Menos «Context Switching»: Evita que el cerebro del desarrollador salte entre 5 tareas, reduciendo la fatiga mental y los bugs causados por desconcentración.",
       ],
+      highlight: "Deja de empezar, comienza a terminar.",
+      note: "El objetivo es maximizar la entrega de valor final, no mantener a la gente ocupada escribiendo código que no se despliega.",
     },
   },
   {
     id: 10,
+    type: "metrics",
+    title: "Métricas y la Ley de Little",
+    content: {
+      subtitle: "Dejamos de estimar en horas y empezamos a medir probabilidad de entrega",
+      metrics: [
+        {
+          name: "Lead Time",
+          value: "Días/Semanas",
+          desc: "Tiempo transcurrido desde que un cliente hace la petición (o cruza el punto de compromiso) hasta su entrega.",
+          icon: "⏱️",
+          color: "#F56A00",
+        },
+        {
+          name: "Cycle Time",
+          value: "Días/Horas",
+          desc: "Tiempo de trabajo activo en un ítem de trabajo (desde que empieza a desarrollarse).",
+          icon: "🔄",
+          color: "#0070F3",
+        },
+        {
+          name: "Throughput",
+          value: "Tarjetas/Semana",
+          desc: "Tasa de entrega. Cuántas tarjetas terminamos por periodo. Permite predecir fechas con simulaciones de Monte Carlo.",
+          icon: "📦",
+          color: "#10B981",
+        },
+        {
+          name: "Ley de Little",
+          value: "Lead Time = WIP / Throughput",
+          desc: "La demostración matemática de que si reduces el Trabajo en Progreso, tu tiempo de entrega baja automáticamente.",
+          icon: "🧮",
+          color: "#7928CA",
+        },
+      ],
+    },
+  },
+  {
+    id: 11,
+    type: "vsscrum",
+    title: "Kanban vs Scrum",
+    content: {
+      subtitle: "Diferentes enfoques para contextos diferentes",
+      comparison: [
+        { aspect: "Iteraciones", kanban: "Flujo continuo (sin Sprints fijos)", scrum: "Sprints fijos (1–4 semanas)" },
+        { aspect: "Roles", kanban: "No impone roles (se empieza con los que hay)", scrum: "Scrum Master, Product Owner, Developers" },
+        { aspect: "Priorización", kanban: "Se puede cambiar el orden de la columna «Ready» en cualquier momento", scrum: "El Sprint Backlog se congela durante el Sprint" },
+        { aspect: "Estimaciones", kanban: "Opcional (se proyecta mediante métricas de flujo)", scrum: "Requeridas (Story points o similar)" },
+        { aspect: "Reuniones", kanban: "A demanda (Replenishment, Standup centrado en el tablero)", scrum: "Eventos prescriptivos (Planning, Daily, Retro, Review)" },
+      ],
+    },
+  },
+  {
+    id: 12,
     type: "closing",
     title: "¿Por dónde empezar?",
     content: {
-      subtitle: "Tu hoja de ruta en 4 pasos para implementar STATIK (Systems Thinking Approach to Introducing Kanban)",
+      subtitle: "La vía evolutiva hacia la agilidad",
       bullets: [
-        "1️⃣ Entiende a tu cliente y los servicios que provees.",
-        "2️⃣ Mapea el flujo de valor actual: ¿Cómo viaja el trabajo desde la idea hasta producción?",
-        "3️⃣ Crea un tablero y define las políticas explícitas y los WIP Limits iniciales.",
-        "4️⃣ Mide, aprende y ajusta en el tiempo usando Lead Time y CFD.",
+        "1️⃣ Visualiza tu flujo actual, tal y como es (sin idealizarlo).",
+        "2️⃣ Acuerda políticas explícitas: ¿Qué significa exactamente que algo esté «En Pruebas»?",
+        "3️⃣ Implementa un límite WIP muy suave al principio y observa dónde se atasca el trabajo.",
+        "4️⃣ Realiza reuniones regulares frente al tablero para debatir cómo mejorar el flujo (Retrospectivas).",
       ],
       highlight: "Evolución, no revolución",
-      note: "Kanban no requiere cambiar tus títulos de puesto, requiere cambiar tu forma de gestionar el trabajo.",
+      note: "El verdadero Kanban requiere paciencia y voluntad de descubrir los cuellos de botella estructurales de tu organización.",
     },
   },
 ];
