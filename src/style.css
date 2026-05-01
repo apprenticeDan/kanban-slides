@@ -621,3 +621,43 @@ html, body {
   .principles-grid { grid-template-columns: 1fr; }
   .steps-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   PRINT MODE
+   ============================================================ */
+.print-mode, .print-mode #app {
+  overflow: visible !important;
+  height: auto !important;
+  background: white;
+  display: block !important;
+}
+.print-mode #slide-container {
+  overflow: visible !important;
+  display: block !important;
+  height: auto !important;
+}
+.print-mode .print-slide {
+  height: 100vh;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  page-break-inside: avoid;
+}
+@media print {
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  body.print-mode {
+    background: white;
+  }
+  .print-mode .print-slide {
+    height: 100vh;
+  }
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+}

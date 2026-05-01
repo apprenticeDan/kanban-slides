@@ -52,9 +52,9 @@ function renderCover(slide: Slide): string {
           ${author ? `<span class="cover-author">${author}</span>` : ""}
           ${date ? `<span class="cover-date">${date}</span>` : ""}
         </div>
-        <div class="cover-note">
+        ${note ? `<div class="cover-note">
           <span class="nav-icon">←</span> ${note} <span class="nav-icon">→</span>
-        </div>
+        </div>` : ""}
       </div>
       <div class="cover-deco">
         <div class="deco-card deco1">Backlog</div>

@@ -15,7 +15,33 @@ class KanbanPresentation {
   private currentIntro: KanbanIntro | null = null;
 
   constructor() {
-    this.init();
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("print")) {
+      this.initPrint();
+    } else {
+      this.init();
+    }
+  }
+
+  private initPrint(): void {
+    this.slideContainer = document.getElementById("slide-container")!;
+    const printableSlides = slides.filter((s) => s.type !== "intro");
+
+    this.slideContainer.innerHTML = printableSlides
+      .map(
+        (slide) => `
+      <div class="print-slide">
+        ${renderSlide(slide)}
+      </div>
+    `
+      )
+      .join("");
+
+    document.body.classList.add("print-mode");
+    const controls = document.getElementById("controls");
+    if (controls) controls.style.display = "none";
+    const progressTrack = document.getElementById("progress-track");
+    if (progressTrack) progressTrack.style.display = "none";
   }
 
   private init(): void {
