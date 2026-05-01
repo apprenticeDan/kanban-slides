@@ -1,18 +1,18 @@
 export interface Slide {
   id: number;
   type:
-    | "intro"
-    | "cover"
-    | "history"
-    | "principles"
-    | "board"
-    | "wip"
-    | "metrics"
-    | "example"
-    | "vsscrum"
-    | "tools"
-    | "text"
-    | "closing";
+  | "intro"
+  | "cover"
+  | "history"
+  | "principles"
+  | "board"
+  | "wip"
+  | "metrics"
+  | "example"
+  | "vsscrum"
+  | "tools"
+  | "text"
+  | "closing";
   title: string;
   content: SlideContent;
 }
@@ -28,6 +28,8 @@ export interface SlideContent {
   tools?: Tool[];
   highlight?: string;
   note?: string;
+  author?: string;
+  date?: string;
 }
 
 export interface KanbanColumn {
@@ -90,6 +92,8 @@ export const slides: Slide[] = [
       body: "Un enfoque evolutivo para la gestión del trabajo del conocimiento, enfocado en la entrega de valor continua y la reducción del caos.",
       highlight: "看板",
       note: "Usa ← → para navegar entre slides",
+      author: "",
+      date: "2026-04-24",
     },
   },
   {

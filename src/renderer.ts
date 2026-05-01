@@ -40,7 +40,7 @@ function renderIntro(): string {
 }
 
 function renderCover(slide: Slide): string {
-  const { subtitle, body, highlight, note } = slide.content;
+  const { subtitle, body, highlight, note, author, date } = slide.content;
   return `
     <div class="slide-inner cover-slide">
       <div class="cover-kanji">${highlight}</div>
@@ -48,6 +48,10 @@ function renderCover(slide: Slide): string {
         <h1 class="cover-title">${slide.title}</h1>
         <p class="cover-subtitle">${subtitle}</p>
         <p class="cover-body">${body}</p>
+        <div class="cover-footer">
+          ${author ? `<span class="cover-author">${author}</span>` : ""}
+          ${date ? `<span class="cover-date">${date}</span>` : ""}
+        </div>
         <div class="cover-note">
           <span class="nav-icon">←</span> ${note} <span class="nav-icon">→</span>
         </div>

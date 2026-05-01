@@ -233,8 +233,25 @@ html, body {
   max-width: 480px;
   margin-top: 0.8rem;
 }
+.cover-footer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cover-author {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: #1A1A2E;
+  font-weight: 700;
+}
+.cover-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #888;
+}
 .cover-note {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-size: 0.8rem;
   color: #888;
   display: flex;
